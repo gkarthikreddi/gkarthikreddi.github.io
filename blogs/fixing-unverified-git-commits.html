@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fixing unverified git commits</title>
+        <link rel="stylesheet" href="../styles.css">
+    </head>
+    <body>
+        <!-- Header -->
+        <header>
+            <!-- Your header content here -->
+        </header>
+
+        <!-- Post Content -->
+        <article>
+            <a href="../index.html" class="back-link">Back to Home</a>
+            <hr>
+            <h1>Fixing unverified git commits.</h1>
+            <p>July 16, 2023</p>
+            <div class="equation-container">
+                <p>If you are getting unverified tag after commiting to github using ssh on your machine then most probably you need to fix the following things</p>
+                <ol>
+                    <li>Check if you have same ssh key in <strong>user.signinkey</strong> in <em>git config</em> and make sure that the same ssh key is uploaded to the github as <strong>Signing key</strong></li>
+                    <li>Check if your github email is linked to the <strong>user.email</strong> in <em>git config</em></li>
+                </ol>
+
+                <p>First check your <em>git config</em> by entering the following command in terminal:</p>
+                <blockquote>
+                    > git config --list
+                </blockquote>
+
+                <p>If you don't have <strong>user.signinkey</strong> then add it to the config:
+                <blockquote>
+                    > git config user.signinkey = YOUR_SSH_PUBLIC_KEY
+                </blockquote>
+                <p>Make sure you upload same key to your github account by going to <em>settings>ssh and gpg keys>add new key</em> and choose the key type as <em>Signing key</em></p>
+
+                <p>If you don't have <strong>user.email</strong> then add it to the config:
+                <blockquote>
+                    > git config user.email = YOUR_EMAIL
+                </blockquote>
+
+                <p>You can also do this by changing the <em>.gitconfig</em> file. If don't have <em>.gitconfig</em> in your home directory then create one and add the following things.</p>
+                <blockquote>
+                    # .gitconfig file
+                    <br>
+                    <br>
+                    [user]
+                    <br>
+                    email = YOUR_EMAIL
+                    <br>
+                    name = YOUR_NAME
+                    <br>
+                    signingkey = YOUR_SSH_PUBLIC_KEY
+                    <br>
+                </blockquote>
+
+                <p>Once again check <em>gitconfig</em> by:</p>
+                <blockquote>
+                    > git config --list
+                </blockquote>
+
+                <p>After adding both ssh key and email to <em>git config</em> your commits should have a verified tag, if you did everything right.</p>
+                <hr />
+
+                <div class="footnotes" role="doc-endnotes">
+                    <p>Know about generating and adding ssh keys <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">here</a></p>
+                </div>
+
+            </div>
+        </article>
+
+        <!-- Footer -->
+        <footer>
+            <!-- Your footer content here -->
+        </footer>
+    </body>
+</html>
