@@ -1,4 +1,4 @@
-import javax.swing.*;
+import java.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 //<applet code=Calculator height=300 width=200></applet>
@@ -10,7 +10,8 @@ public class Calculator extends JApplet {
     }
 }
 class CalculatorPanel extends JPanel implements ActionListener {
-    JButton n1,n2,n3,n4,n5,n6,n7,n8,n9,n0,plus,minus,mul,div,dot,equal; static JTextField result=new JTextField("0",45);
+    JButton n1,n2,n3,n4,n5,n6,n7,n8,n9,n0,plus,minus,mul,div,dot,equal;
+    static JTextField result=new JTextField("0",45);
     static String lastCommand=null;
     JOptionPane p=new JOptionPane();
     double preRes=0,secVal=0,res;
