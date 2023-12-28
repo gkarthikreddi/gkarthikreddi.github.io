@@ -1,80 +1,43 @@
 body {
-  font-family: 'verdana', monospace;
-  font-size: 2vh;
-  line-height: 1.5;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 1rem;
-  width: 100%;
-  box-sizing: border-box;
+	background: #1a1a1a;
+	color: #f2f2f2;
+	font-family: Helvetica, san-serif;
+}
+
+.main {
+	max-width: 850px;
+	margin: 60px auto 0 auto ;
+	margin-bottom: 40px;
+	margin-top: 10px;
+}
+
+p {
+	font-size:19px;
+}
+
+ul {
+	margin: 0px;
+}
+
+li {
+	font-size:19px;
+	margin: 5px;
+}
+
+code {
+	font-size: 17px;
+	color: #e6e600;
 }
 
 a {
-  color: #007bff;
-  text-decoration: none;
+	color: #e6e600;
+	text-decoration: none;
 }
-
 a:hover {
-  text-decoration: underline;
+	text-decoration: underline;
 }
-
 a:visited {
-  color: rgb(255, 0, 0);
-  background-color: transparent;
-  text-decoration: none;
-  }
-
-
-/* Post style */
-article {
-  margin-bottom: 20px;
-  padding: 1rem;
-}
-
-h1 {
-  font-size: 3vh;
-  font-weight: bold;
-  color: #333;
-}
-
-.post-date {
-  font-size: 14px;
-  color: #777;
-  margin-bottom: 10px;
-}
-
-.post-content {
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-/* To center images */
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-.caption {
-  width: 200px;
-  text-align: center;
-}
-
-
-/* Style for the blockquotes, ie: when using > */
-blockquote {
-  border-left: 2px solid #cccccc; /* Add a left border */
-  padding: 0 15px; /* Add some padding for space */
-  margin: 10px 0; /* Add margin for separation */
-  color: #555; /* Set the text color */
-}
-
-/* Style for the post dates */
-.post-date {
-  font-family: 'Inconsolata', monospace;
-  font-size: 14px;
-  color: #000000;
-  margin-bottom: 10px;
+	color: #e6e600;
+	background-color: transparent;
+	text-decoration: none;
 }
