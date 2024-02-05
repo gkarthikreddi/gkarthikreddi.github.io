@@ -2,9 +2,11 @@ body {
 	background: #1a1a1a;
 	color: #f2f2f2;
 	font-family: Helvetica, san-serif;
+    height: 100vh;
 }
 
 .main {
+    height: calc(100% - 150px);
 	max-width: 850px;
 	margin: 60px auto 0 auto ;
 	margin-bottom: 40px;
@@ -40,4 +42,11 @@ a:visited {
 	color: #e6e600;
 	background-color: transparent;
 	text-decoration: none;
+}
+
+footer {
+	max-width: 850px;
+	margin: 60px auto 0 auto ;
+    color: #f2f2f2;
+    bottom: 0;
 }
