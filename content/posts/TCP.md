@@ -19,6 +19,7 @@ Some constraints in Go:
 # Basics
 I use graphs to represent a topology, each node in the graph acts has a router. Each node(router) contains a bunch of interfaces and every node and it's interface have network properties. Each node is connected using a Link through one of its interface. 
 Link to the whole <a href="https://github.com/gkarthikreddi/tcp/">project</a>.
+
 <img class="svg" src="/class_diagram.svg" >
 ## Network Properties
 Very node and interface has some network properties. Node has loopback address and routing table has layer3 properties, arp table and mac address table has layer2 properties. Interface either operates in layer2 or layer3, so it contains Ip, Mac addresses and L2 mode.
