@@ -1,0 +1,35 @@
+code {
+  background-color: var(--bg-1);
+  padding: 0.1em 0.2em;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+pre {
+  /* Rounded border */
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+
+  line-height: 1.4;
+  overflow-x: auto;
+  padding: 1em;
+
+  font-family: var(--code-font);
+  background-color: var(--bg-code) !important;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
+
+pre code {
+  background-color: transparent;
+  color: inherit;
+  font-size: 100%;
+  padding: 0;
+
+  // We only want a border around `code` and not `pre code` blocks.
+  border: 0;
+}
+
+span {
+  text-decoration: none !important;
+}

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="180" font-family="monospace" font-size="16">
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="black" />
+
+  <!-- Borders for the table -->
+  <rect x="10" y="20" width="380" height="40" stroke="white" fill="none"/>
+  <rect x="10" y="60" width="380" height="40" stroke="white" fill="none"/>
+  <rect x="10" y="100" width="380" height="40" stroke="white" fill="none"/>
+  <rect x="10" y="140" width="380" height="40" stroke="white" fill="none"/>
+
+  <!-- Column dividers -->
+  <line x1="200" y1="20" x2="200" y2="180" stroke="white" />
+
+  <!-- Table Headers -->
+  <text x="30" y="50" fill="white">MAC</text>
+  <text x="240" y="50" fill="white">INTERFACE</text>
+
+  <!-- First row -->
+  <text x="30" y="90" fill="white">63:b0:e0:c9:bb:30</text>
+  <text x="240" y="90" fill="white">eth0/2</text>
+
+  <!-- Second row -->
+  <text x="30" y="130" fill="white">38:ee:69:4:fa:6f</text>
+  <text x="240" y="130" fill="white">eth0/5</text>
+
+  <!-- Third row -->
+  <text x="30" y="170" fill="white">43:e8:1d:60:3e:47</text>
+  <text x="240" y="170" fill="white">eth0/5</text>
+</svg>

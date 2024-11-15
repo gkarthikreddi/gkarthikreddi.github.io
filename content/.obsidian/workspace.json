@@ -1,0 +1,196 @@
+{
+  "main": {
+    "id": "6d771ed45e882670",
+    "type": "split",
+    "children": [
+      {
+        "id": "5a0b79382eb1f1b6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b2a5a2e76e467dfd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "posts/fixing_unverified_git_commits.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "fixing_unverified_git_commits"
+            }
+          },
+          {
+            "id": "ce86c8c6e8c2d132",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "posts/TCP.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "TCP"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f7239798a96ad732",
+    "type": "split",
+    "children": [
+      {
+        "id": "81572449e94bedf2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "55b3c01ce6ca14de",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "855c1e68b5c9aeff",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "a6e82ff4e9954573",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "9ac9192a50ec636d",
+    "type": "split",
+    "children": [
+      {
+        "id": "d792b957277369f3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bec4a6a27a64c81d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "posts/TCP.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for TCP"
+            }
+          },
+          {
+            "id": "22d7bba00fc4eb70",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "posts/TCP.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from TCP"
+            }
+          },
+          {
+            "id": "e0a9a08d9105c652",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "35861ce011feb158",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "posts/TCP.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of TCP"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "ce86c8c6e8c2d132",
+  "lastOpenFiles": [
+    "posts/rttable.svg",
+    "posts/TCP.md",
+    "posts/mactable.svg",
+    "posts/arptable.svg",
+    "posts/arptable.png",
+    "posts/fixing_unverified_git_commits.md",
+    "posts/class_diagram.svg",
+    "posts/graph.svg",
+    "posts/hello.svg",
+    "posts/class.svg",
+    "posts/_index.md",
+    "about.md",
+    "_index.md"
+  ]
+}
