@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         TCP&#x2F;IP
+        
+    </title>
+
+        
+            <meta property="og:title" content="TCP&#x2F;IP" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="Building TCP&#x2F;IP Stack in Go" />
+         
+     
+
+     
+         
+             <meta name="description" content="Building TCP&#x2F;IP Stack in Go" />
+         
+    
+
+    
+    
+        <link rel="icon" type="image/png" href=&#x2F;favicon.png />
+    
+
+    
+    
+        <link href=https://karthikreddy.org/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="Karthik Reddy" href="https://karthikreddy.org/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://karthikreddy.org/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://karthikreddy.org/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+    <script src=https://karthikreddy.org/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://karthikreddy.org/main.css />
+
+    
+</head>
+
+
+<body>
+    <div class="content">
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;karthikreddy.org&#x2F;>Karthik Reddy</a>
+
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;gkarthikreddi&#x2F;" class="social">
+                <img alt=github src=https://karthikreddy.org/social_icons/github.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;linkedin.com&#x2F;in&#x2F;gkarthikreddi&#x2F;" class="social">
+                <img alt=linkedin src=https://karthikreddy.org/social_icons/linkedin.svg>
+            </a>
+            
+            <a rel="me" href="mailto:me@karthikreddy.org" class="social">
+                <img alt=email src=https://karthikreddy.org/social_icons/email.svg>
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a href=https://karthikreddy.org/posts style="margin-left: 0.5em">&#x2F;posts</a>
+        
+        <a href=https://karthikreddy.org/projects style="margin-left: 0.5em">&#x2F;projects</a>
+        
+        <a href=https://karthikreddy.org/about style="margin-left: 0.5em">&#x2F;about</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://karthikreddy.org/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://karthikreddy.org/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        TCP&#x2F;IP<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2024-08-22</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+
+        <section class="body">
+            <h1 id="why-go">Why Go?</h1>
+<p>I wanted to learn Go and the best way to do that is by building something. So, I decided to implement TCP/IP stack in Go. Generally people implement this using 'C', it's a conventional way to doing it but has I decided to try Go I'm building this in Go.</p>
+<p>Things I liked about Go:</p>
+<ul>
+<li>You just have to capitalize to export something like functions or members of a struct, everything else stays in the package.</li>
+<li>Returning multiple things of different type from a function, because of this error handling becomes very easy.</li>
+<li>Conversion from array to splice and vice versa.</li>
+<li>It's fast, very fast.</li>
+</ul>
+<p>Some constraints in Go:</p>
+<ul>
+<li>There is no pointer arithmetic in Go. The thing with TCP/IP stack is that you need pointer arithmetic because has you pass packet from one layer to another, you need to access it's payload and manipulate it, because of this entire concept <code>GlueThread</code> is impractical in Go.</li>
+<li>In Go byte is the least size datatype. This makes it hard to implement header formats of different layers. Even in areas where we just need a few bits we have to use a byte(8 bits).</li>
+</ul>
+<h1 id="basics">Basics</h1>
+<p>I use graphs to represent a topology, each node in the graph acts has a router. Each node(router) contains a bunch of interfaces and every node and it's interface have network properties. Each node is connected using a Link through one of its interface.
+Link to the whole <a href="https://github.com/gkarthikreddi/tcp/">project</a>.</p>
+<img class="svg" src="/class_diagram.svg" >
+## Network Properties
+Very node and interface has some network properties. Node has loopback address and routing table has layer3 properties, arp table and mac address table has layer2 properties. Interface either operates in layer2 or layer3, so it contains Ip, Mac addresses and L2 mode.
+## Command Parser
+This is a CLI application so we need a command parser to interact with the user. There are many CLI libraries in Go but I decided to implement my own has I'm trying to learn Go. I went with the conventional CLI implementation. Each param is either a Leaf node or Command node. A command node shouldn't contain more than one leaf node has it creates ambiguity. These nodes have ***validation*** and ***callback*** functions which are performed when the user runs the command. The parser runs in an infinite loop creating a REPL(Read Eval Print Loop).
+<p>I don't want to get too technical about how the Command Parser is implemented because it needs its own post.</p>
+<h2 id="layer-5-application">Layer 5 (Application)</h2>
+<p>This layer generates the data to be sent, I implemented <code>ping</code> functionality  in this layer so that we can test all other layers. You can further add IP-IN-IP encapsulation and other functionality later.</p>
+<h2 id="layer-4-tcp-udp">Layer 4 (TCP / UDP)</h2>
+<p>Each node uses UDP to listen and send packets. I've used "net" package to implement this, every node has a port number to uniquely identify itself in the topology. The problem is that we don't know to which interface the package is designated so we use a special packet to include interface name in the packet along with the actual packet.</p>
+<pre data-lang="go" style="background-color:#282a36;color:#f8f8f2;" class="language-go "><code class="language-go" data-lang="go"><span style="font-style:italic;color:#8be9fd;">type </span><span>packet </span><span style="font-style:italic;color:#8be9fd;">struct </span><span>{
+</span><span>	</span><span style="color:#ffffff;">Intf       </span><span style="font-style:italic;color:#66d9ef;">string </span><span style="color:#6272a4;">// Identify to which interface the packet is sent
+</span><span>	</span><span style="color:#ffffff;">EtherFrame </span><span style="font-style:italic;color:#8be9fd;">ethernetHeader
+</span><span>}
+</span></code></pre>
+<h2 id="layer-3-internet">Layer 3 (Internet)</h2>
+<p>This layer creates the IP packet based on the data sent from the TCP layer but in our implementation the application layer directly sends the data to internet layer. This layer creates an IP header with source and destination IP addresses.</p>
+<p>The node lookups up it's <code>routingTable</code> and by using the gateway address and interface it sends the packet out. The lookup in routing table works through LPM (Least prefix match).A node must have route in it's routing table to send a packet. We can add the route in out application using the below commad
+config node <code>node-name</code> route <code>dstIP</code> <code>mask</code> <code>gatewayIP</code> <code>outIntferface</code>
+Example of a routing table</p>
+<img class="svg" src="/rttable.svg" >
+<p>When a layer3 receives a packet it checks whether the packet is designated to it or not, if it's not then it sends the packet out through another interface, else it process the packet.</p>
+<h2 id="layer-2-ethernet">Layer 2 (Ethernet)</h2>
+<p>A router can operate in either L3 Mode or L2 Mode. In L3 mode it uses <code>Arp Table</code> to send packets to other nodes. In L2 mode(switch) it uses <code>Mac Table</code> to send packets to other nodes.</p>
+<p>In a general node(Host) this layer creates an ethernet header with destination and source mac addresses and adds IP header has payload of the packet. To convert a struct to byte array I've used <code>encoding/gob</code> package. Then it sends the packet out using arp table.</p>
+<pre data-lang="go" style="background-color:#282a36;color:#f8f8f2;" class="language-go "><code class="language-go" data-lang="go"><span style="font-style:italic;color:#8be9fd;">type </span><span>ethernetHeader </span><span style="font-style:italic;color:#8be9fd;">struct </span><span>{
+</span><span>	</span><span style="color:#ffffff;">DstMacAddr </span><span>[</span><span style="color:#bd93f9;">6</span><span>]</span><span style="font-style:italic;color:#66d9ef;">byte
+</span><span>	</span><span style="color:#ffffff;">SrcMacAddr </span><span>[</span><span style="color:#bd93f9;">6</span><span>]</span><span style="font-style:italic;color:#66d9ef;">byte
+</span><span>	</span><span style="color:#ffffff;">Tagged     </span><span style="color:#ff79c6;">*</span><span style="font-style:italic;color:#8be9fd;">vlan8021qHeader
+</span><span>	</span><span style="color:#ffffff;">EtherType  </span><span style="font-style:italic;color:#66d9ef;">uint16
+</span><span>	</span><span style="color:#ffffff;">Payload    </span><span>[</span><span style="color:#bd93f9;">500</span><span>]</span><span style="font-style:italic;color:#66d9ef;">byte </span><span style="color:#6272a4;">// Ideally it could be between 45 - 1500 bytes
+</span><span>	</span><span style="color:#ffffff;">Fcs        </span><span style="font-style:italic;color:#66d9ef;">uint32
+</span><span>}
+</span></code></pre>
+<h3 id="arp-address-resolution-protocol">ARP (Address Resolution Protocol)</h3>
+<p>This is used to resolve a mac-address of an interface. You can either pass the Ip address of the interface of which you want to find the mac address or you can resolve all mac addresses of all connected interfaces of a node</p>
+<blockquote>
+<p>run node <code>node-name</code> resolve-arp <code>dst-ip</code></p>
+<p>run node <code>node-name</code> resolve-arp all</p>
+</blockquote>
+<pre data-lang="go" style="background-color:#282a36;color:#f8f8f2;" class="language-go "><code class="language-go" data-lang="go"><span style="font-style:italic;color:#8be9fd;">type </span><span>arpHeader </span><span style="font-style:italic;color:#8be9fd;">struct </span><span>{
+</span><span>	</span><span style="color:#ffffff;">HardwareType    </span><span style="font-style:italic;color:#66d9ef;">uint16 </span><span style="color:#6272a4;">// Always 1 for ethernet cable
+</span><span>	</span><span style="color:#ffffff;">ProtocolType    </span><span style="font-style:italic;color:#66d9ef;">uint16 </span><span style="color:#6272a4;">// 0x0800 for IPv4
+</span><span>	</span><span style="color:#ffffff;">HardwareLength  </span><span style="font-style:italic;color:#66d9ef;">uint8  </span><span style="color:#6272a4;">// 6 for network.Mac Address
+</span><span>	</span><span style="color:#ffffff;">ProtocolLength  </span><span style="font-style:italic;color:#66d9ef;">uint8  </span><span style="color:#6272a4;">// 4 for IPv4
+</span><span>	</span><span style="color:#ffffff;">Operation       </span><span style="font-style:italic;color:#66d9ef;">uint16 </span><span style="color:#6272a4;">// request:1 or reply:2
+</span><span>	</span><span style="color:#ffffff;">SrcMacAddr      </span><span>[</span><span style="color:#bd93f9;">6</span><span>]</span><span style="font-style:italic;color:#66d9ef;">byte
+</span><span>	</span><span style="color:#ffffff;">SrcProtocolAddr </span><span>[</span><span style="color:#bd93f9;">4</span><span>]</span><span style="font-style:italic;color:#66d9ef;">byte
+</span><span>	</span><span style="color:#ffffff;">DstMacAddr      </span><span>[</span><span style="color:#bd93f9;">6</span><span>]</span><span style="font-style:italic;color:#66d9ef;">byte
+</span><span>	</span><span style="color:#ffffff;">DstProtocolAddr </span><span>[</span><span style="color:#bd93f9;">4</span><span>]</span><span style="font-style:italic;color:#66d9ef;">byte
+</span><span>}
+</span></code></pre>
+<p>The way it resolves is that, It uses the broadcast mac-address as <code>DstMacAddr</code> of ethernet header and sends the packet through interfaces which belong in the same subnet has <code>DstProtocolAddr</code>.  When the other interface receives the packet and knows that it is an ARP request it checks whether the <code>DstProtocolAddr</code> is the Ip address of the interface if so, then it responds with an arp reply. From the arp reply the source node updates the its <code>ArpTable</code>.</p>
+<img class="svg" src="/arptable.svg" >
+<h3 id="switch">Switch</h3>
+<p>First we need to understand how a switch(node operating in L2 mode) works. An interface in a switch can operate in either <strong>TRUNK</strong> or <strong>ACCESS</strong> mode. In access mode an interface has a single vlan membership, in trunk mode it can have multiple vlan memberships. Trunks can handle traffic from multiple vlans whereas Access mode usually connects to single end device(host). Ethernet Header has tagged member which tells if a packet is associated with any vlan.</p>
+<pre data-lang="go" style="background-color:#282a36;color:#f8f8f2;" class="language-go "><code class="language-go" data-lang="go"><span style="font-style:italic;color:#8be9fd;">type </span><span>vlan8021qHeader </span><span style="font-style:italic;color:#8be9fd;">struct </span><span>{
+</span><span>	</span><span style="color:#ffffff;">TPID </span><span style="font-style:italic;color:#66d9ef;">uint16
+</span><span>	</span><span style="color:#ffffff;">Id   </span><span style="font-style:italic;color:#66d9ef;">uint16 </span><span style="color:#6272a4;">// This should be 12 bits has there are PRI (3bits) and CFI (1bits)
+</span><span>}
+</span></code></pre>
+<p>When a switch receives a packet on an interface. It updates its <code>macTable</code> and sends the packet out based on the outInterface associated with <code>DstMacAddress</code> of ethernet header. It doesn't contain an entry in the <code>macTable</code> then it sends the packet out of all interfaces expect the interface through which the packet was received.</p>
+<img class="svg" src="/mactable.svg" >
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+            
+        
+
+        
+    </div>
+</body>
+
+</html>

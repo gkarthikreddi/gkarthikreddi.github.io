@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<html class="dark light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+    
+    
+    <title>
+         Fixing Unverified Git Commits
+        
+    </title>
+
+        
+            <meta property="og:title" content="Fixing Unverified Git Commits" />
+        
+     
+
+     
+         
+             <meta property="og:description" content="A note to myself" />
+         
+     
+
+     
+         
+             <meta name="description" content="A note to myself" />
+         
+    
+
+    
+    
+        <link rel="icon" type="image/png" href=&#x2F;favicon.png />
+    
+
+    
+    
+        <link href=https://karthikreddy.org/fonts.css rel="stylesheet" />
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="Karthik Reddy" href="https://karthikreddy.org/atom.xml">
+
+
+    
+    
+        <link rel="stylesheet" type="text/css" href=https://karthikreddy.org/theme/light.css />
+        <link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://karthikreddy.org/theme/dark.css" />
+    
+
+    <!-- Set the correct theme in the script -->
+    <script src=https://karthikreddy.org/js/themetoggle.js></script>
+    
+        <script>setTheme(getSavedTheme());</script>
+    
+
+    <link rel="stylesheet" type="text/css" media="screen" href=https://karthikreddy.org/main.css />
+
+    
+</head>
+
+
+<body>
+    <div class="content">
+        <header>
+    <div class="main">
+        <a href=https:&#x2F;&#x2F;karthikreddy.org&#x2F;>Karthik Reddy</a>
+
+        <div class="socials">
+            
+            <a rel="me" href="https:&#x2F;&#x2F;github.com&#x2F;gkarthikreddi&#x2F;" class="social">
+                <img alt=github src=https://karthikreddy.org/social_icons/github.svg>
+            </a>
+            
+            <a rel="me" href="https:&#x2F;&#x2F;linkedin.com&#x2F;in&#x2F;gkarthikreddi&#x2F;" class="social">
+                <img alt=linkedin src=https://karthikreddy.org/social_icons/linkedin.svg>
+            </a>
+            
+            <a rel="me" href="mailto:me@karthikreddy.org" class="social">
+                <img alt=email src=https://karthikreddy.org/social_icons/email.svg>
+            </a>
+            
+        </div>
+    </div>
+
+    <nav>
+        
+        <a href=https://karthikreddy.org/posts style="margin-left: 0.5em">&#x2F;posts</a>
+        
+        <a href=https://karthikreddy.org/projects style="margin-left: 0.5em">&#x2F;projects</a>
+        
+        <a href=https://karthikreddy.org/about style="margin-left: 0.5em">&#x2F;about</a>
+        
+
+        
+        |<a id="dark-mode-toggle" onclick="toggleTheme(); event.preventDefault();" href="#">
+            <img src=https://karthikreddy.org/feather/sun.svg id="sun-icon" style="filter: invert(1);" alt="Light" />
+            <img src=https://karthikreddy.org/feather/moon.svg id="moon-icon" alt="Dark" />
+        </a>
+
+        <!-- Inititialize the theme toggle icons -->
+        <script>updateItemToggleTheme()</script>
+        
+    </nav>
+</header>
+
+
+        
+        
+    
+<main>
+    <article>
+        <div class="title">
+            
+            
+    <div class="page-header">
+        Fixing Unverified Git Commits<span class="primary-color" style="font-size: 1.6em">.</span>
+    </div>
+
+
+                <div class="meta">
+                    
+                        Posted on <time>2023-07-16</time>
+                    
+
+                    
+
+                    
+
+                    
+                    
+
+                    
+                    
+
+                    
+
+                </div>
+        </div>
+
+        
+
+        
+        
+
+        <section class="body">
+            <p>If you are getting unverified tag in your github account when you commit using ssh from your local machine, then following instructions might help. Firstly check if you have <code>.gitconfig</code> file in your home directory. If you don't have it you need to create one. You can do it terminal using the below command.</p>
+<pre data-lang="bash" style="background-color:#282a36;color:#f8f8f2;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#50fa7b;">touch </span><span>$</span><span style="color:#ffffff;">HOME</span><span>/.gitconfig
+</span></code></pre>
+<p>After creating the file, you need to add your signinkey and email to your <code>.gitconfig</code>. You can do that in one of two way:</p>
+<ol>
+<li>Through terminal</li>
+<li>Editing the <code>.gitconfig</code> file</li>
+</ol>
+<h3 id="through-terminal">Through terminal</h3>
+<ul>
+<li>Add your public SSH key to the signinkey, make sure that you use the same key that you use for your github account. Replace <em>SSH_KEY</em> with your pubic key</li>
+</ul>
+<pre data-lang="sh" style="background-color:#282a36;color:#f8f8f2;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#50fa7b;">git</span><span> config user.signinkey = YOUR_SSH_PUBLIC_KEY
+</span></code></pre>
+<ul>
+<li>Add your email as well</li>
+</ul>
+<pre data-lang="sh" style="background-color:#282a36;color:#f8f8f2;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#50fa7b;">git</span><span> config user.signinkey = EMAIL
+</span></code></pre>
+<h3 id="edit-the-gitconfig-file">Edit the <code>.gitconfig</code> file</h3>
+<p>Paste the following content and replace YOUR_NAME, YOUR_EMAIL and SSH_KEY.</p>
+<pre data-lang="bash" style="background-color:#282a36;color:#f8f8f2;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#6272a4;"># .gitconfig
+</span><span style="color:#50fa7b;">[user]
+</span><span style="color:#50fa7b;">email</span><span> = YOUR_EMAIL
+</span><span style="color:#50fa7b;">name</span><span> = YOUR_NAME
+</span><span style="color:#50fa7b;">signingkey</span><span> = SSH_KEY
+</span></code></pre>
+<p>Confirm that you added both <em>signinkey</em> and <em>email</em> by entering the below command in the terminal. This command will the contents of your <code>.gitconfig</code>.</p>
+<pre data-lang="bash" style="background-color:#282a36;color:#f8f8f2;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#50fa7b;">git</span><span> config</span><span style="font-style:italic;color:#ffb86c;"> --list
+</span></code></pre>
+<p>You are good to go</p>
+
+        </section>
+    </article>
+</main>
+
+
+
+        
+            
+        
+
+        
+    </div>
+</body>
+
+</html>

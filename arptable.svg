@@ -1,0 +1,27 @@
+<svg width="500" height="150" xmlns="http://www.w3.org/2000/svg" font-size="16" font-family="monospace">
+ <!-- Background -->
+
+ <!-- Borders for the table -->
+ <!-- Column dividers -->
+ <!-- Table Headers -->
+ <!-- First row -->
+ <!-- Second row -->
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_1" fill="black" height="100%" width="100%"/>
+  <path id="svg_2" d="m10,20l480,0l0,40l-480,0l0,-40z" opacity="undefined" stroke="white" fill="none"/>
+  <path id="svg_3" d="m10,60l480,0l0,40l-480,0l0,-40z" opacity="undefined" stroke="white" fill="none"/>
+  <path id="svg_4" d="m10,101l480,0l0,40l-480,0l0,-40z" opacity="undefined" stroke="white" fill="none"/>
+  <line id="svg_5" stroke="white" y2="140" x2="130" y1="20" x1="130"/>
+  <path id="svg_6" d="m333,20l0,120" opacity="undefined" stroke="white"/>
+  <text id="svg_7" fill="white" y="50" x="30">IP</text>
+  <text id="svg_8" fill="white" y="50" x="160">MAC</text>
+  <text id="svg_9" fill="white" y="50" x="340">INTERFACE</text>
+  <text id="svg_10" fill="white" y="90" x="30">10.1.1.2</text>
+  <text id="svg_11" fill="white" y="90" x="160">fb:76:62:5a:c5:76</text>
+  <text id="svg_12" fill="white" y="90" x="340">eth0/0</text>
+  <text id="svg_13" fill="white" y="130" x="30">40.1.1.1</text>
+  <text id="svg_14" fill="white" y="130" x="160">72:14:62:7:95:13</text>
+  <text id="svg_15" fill="white" y="130" x="340">eth0/7</text>
+ </g>
+</svg>
